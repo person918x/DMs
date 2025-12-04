@@ -1,9 +1,19 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+#root {
+  margin: auto;
+  padding: 1rem;
+}
+
 .chat-bubble {
+  --radius-field: 0.5rem;
   --color-primary: #2877d0;
   --color-primary-content: #ffffff;
   --color-secondary: #AEB9CC;
   --color-secondary-content: #000000;
+}
+
+.chat-bubble-secondary::before {
+  inset-inline-start: -0.6rem;
 }
