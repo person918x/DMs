@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.chat-bubble {
+  --color-primary: #2877d0;
+  --color-primary-content: #ffffff;
+  --color-secondary: #AEB9CC;
+  --color-secondary-content: #000000;
+}
