@@ -29,7 +29,7 @@ export default function Message({
         {name}
         <time className="text-xs opacity-50">{time.toString()}</time>
       </div>
-      <div className={`chat-bubble ${incoming ? 'chat-bubble-secondary' : 'chat-bubble-primary'}`}>{message}</div>
+      <div className={`chat-bubble ${incoming ? 'chat-bubble-primary' : 'chat-bubble-secondary'}`}>{message}</div>
       <div className="chat-footer opacity-50">{status}</div>
     </div >
   );

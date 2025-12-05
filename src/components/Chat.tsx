@@ -1,4 +1,6 @@
+import ContactHeader from "./ContactHeader";
 import Message, { type MessageI } from "./ChatBubble";
+import MessageField from "./MessageField";
 
 export default function Chat() {
   const messages: MessageI[] = [
@@ -28,10 +30,16 @@ export default function Chat() {
   ];
 
   return (
-    <>
-      {messages.map((msg, index) => (
-        <Message key={index} {...msg} />
-      ))}
-    </>
+    <div className="chat min-h-screen flex flex-col justify-between">
+      <ContactHeader name={messages[0].name} avatar={messages[0].avatar} />
+      <div className="chat-body grow m-5">
+        <div className="overflow-y-scroll">
+          {messages.map((msg, index) => (
+            <Message key={index} {...msg} />
+          ))}
+        </div>
+      </div>
+      <MessageField />
+    </div>
   );
 }
