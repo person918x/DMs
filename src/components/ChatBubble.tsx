@@ -1,5 +1,6 @@
 export interface MessageI {
   incoming?: boolean;
+  avatar?: string;
   name?: string;
   time: Date | string;
   message: string;

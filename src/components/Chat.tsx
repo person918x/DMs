@@ -30,7 +30,7 @@ export default function Chat() {
   ];
 
   return (
-    <div className="chat min-h-screen flex flex-col justify-between">
+    <div className="chat min-h-screen flex flex-col justify-between p-0">
       <ContactHeader name={messages[0].name} avatar={messages[0].avatar} />
       <div className="chat-body grow m-5">
         <div className="overflow-y-scroll">
