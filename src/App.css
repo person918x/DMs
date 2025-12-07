@@ -14,4 +14,8 @@
   .chat-bubble-primary::before {
     inset-inline-start: -0.6rem;
   }
+
+  pre {
+    white-space: pre-wrap;
+  }
 }
