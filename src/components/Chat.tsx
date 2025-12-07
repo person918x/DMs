@@ -15,7 +15,7 @@ export default function Chat() {
       <div className="chat-body grow min-h-0 m-5">
         <div className="overflow-y-scroll h-full">
           {message_groups.map(({ time, messages }, index) => (
-            <div key={index}>
+            <div key={index} className="m-2">
               <time className="text-xs opacity-50">{time}</time>
               {messages.map((msg, i) => (
                 <Message key={i} incoming={true} message={msg} />

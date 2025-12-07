@@ -20,9 +20,9 @@ if __name__ == '__main__':
       output.append({ 'time': text, 'messages': msg_group })
       msg_group = []
     else:
-      # Consider new paragraphs as individual texts
+      # Consider new paragraphs/lines as individual texts
       # Ignore whitespace only lines leading/trailing whitespace
-      messages = text.split('\n\t')
+      messages = text.split('\n')
       for msg in messages:
         if len(msg.split()):
           msg_group.append(msg.strip())
