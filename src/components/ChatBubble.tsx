@@ -1,26 +1,28 @@
 export interface MessageI {
-  incoming?: boolean;
-  avatar?: string;
-  name?: string;
-  time: Date | string;
   message: string;
+  incoming?: boolean;
+  name?: string;
   status?: string;
 };
 
 export default function Message({
-  incoming = false,
-  name = 'Unknown',
-  time,
   message,
+  incoming = false,
+  name = '',
   status = '',
 }: MessageI) {
   return (
     <div className={`chat ${incoming ? 'chat-start' : 'chat-end'}`}>
-      <div className="chat-header">
-        {name}
-        <time className="text-xs opacity-50">{time.toString()}</time>
-      </div>
-      <div className={`chat-bubble ${incoming ? 'chat-bubble-primary' : 'chat-bubble-secondary'}`}>{message}</div>
+      {name
+        ?
+        (
+          <div className="chat-header">
+            {name}
+          </div>
+        )
+        : undefined
+      }
+      <div className={`chat-bubble ${incoming ? 'chat-bubble-secondary' : 'chat-bubble-primary'}`}>{message}</div>
       <div className="chat-footer opacity-50">{status}</div>
     </div >
   );
