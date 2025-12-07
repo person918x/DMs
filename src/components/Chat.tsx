@@ -1,5 +1,5 @@
 import ContactHeader from "./ContactHeader";
-import Message, { type MessageI } from "./ChatBubble";
+import Message from "./ChatBubble";
 import MessageField from "./MessageField";
 import message_groups from '../assets/messages.json';
 
@@ -12,8 +12,8 @@ export default function Chat() {
   return (
     <div className="chat flex flex-col h-screen justify-between p-0">
       <ContactHeader name={contact.name} avatar={contact.avatar} />
-      <div className="chat-body grow min-h-0 m-5">
-        <div className="overflow-y-scroll h-full">
+      <div className="chat-body grow min-h-0">
+        <div className="overflow-y-scroll h-full p-5">
           {message_groups.map(({ time, messages }, index) => (
             <div key={index} className="m-2">
               <time className="text-xs opacity-50">{time}</time>
