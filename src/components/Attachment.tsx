@@ -40,7 +40,7 @@ export default function Attachment({ src }: Props) {
         <form method="dialog" className="modal-backdrop">
           <button>close</button>
         </form>
-      </dialog >
+      </dialog>
     </>
   )
 }
