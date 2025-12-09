@@ -15,14 +15,17 @@ export default function Message({
   status = '',
   attachment,
 }: MessageI) {
+  const incomingStyle = incoming ? 'chat-bubble-secondary' : 'chat-bubble-primary';
   return (
     <div className={`chat ${incoming ? 'chat-start' : 'chat-end'}`}>
       {name ? <div className="chat-header">{name}</div> : undefined}
-      <div className={`chat-bubble ${incoming ? 'chat-bubble-secondary' : 'chat-bubble-primary'}`}>
+      <div className={`chat-bubble ${incomingStyle}`}>
         {message}
         {attachment ? <Attachment src={attachment} /> : undefined}
       </div>
-      <div className="chat-footer opacity-50">{status}</div>
-    </div >
+      <div className={`chat-footer opacity-50`}>
+        {status}
+      </div>
+    </div>
   );
 } 
