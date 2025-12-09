@@ -11,6 +11,7 @@ export interface MessageState {
   messages: MessageGroup[];
   message: string | undefined;
   loading: boolean;
+  error: boolean;
 }
 
 // Define the initial value for the slice state
@@ -18,6 +19,7 @@ const initialState: MessageState = {
   messages: [],
   message: '',
   loading: false,
+  error: false,
 }
 
 export const createSlice = buildCreateSlice({
@@ -65,10 +67,15 @@ export const messageSlice = createSlice({
         fulfilled: (state, action) => {
           state.loading = false
           state.messages.push(action.payload as unknown as MessageGroup)
+          state.error = true;
           state.message = '';
         },
       }
-    )
+    ),
+    // Clear error modal
+    clearError: create.reducer((state) => {
+      state.error = false;
+    }),
   }),
 })
 
@@ -77,7 +84,7 @@ function timeout(ms: number) {
 }
 
 // Export the generated action creators for use in components
-export const { setMessages, editMessage, addMessage } = messageSlice.actions
+export const { setMessages, editMessage, addMessage, clearError } = messageSlice.actions
 
 // Export the slice reducer for use in the store configuration
 export default messageSlice.reducer
