@@ -21,27 +21,26 @@ export default function Chat() {
 
   useEffect(() => {
     if (message_groups && ally_mcbeal_screenplay && felicity_screenplay) {
-      dispatch(
-        setMessages(
-          message_groups.map(({ time, messages }) => ({
-            time,
-            messages: messages.map((message, i) => {
-              let attachment;
-              if (message === '<INSERT ALLY MCBEAL SCREENPLAY>')
-                attachment = ally_mcbeal_screenplay;
-              else if (message === '<INSERT FELICITY SCREENPLAY>')
-                attachment = felicity_screenplay;
+      const msgs = message_groups.map(({ time, messages }, i) => ({
+        time,
+        messages: messages.map((message, j) => {
+          let attachment;
+          if (message === '<INSERT ALLY MCBEAL SCREENPLAY>')
+            attachment = ally_mcbeal_screenplay;
+          else if (message === '<INSERT FELICITY SCREENPLAY>')
+            attachment = felicity_screenplay;
 
-              return ({
-                key: i,
-                incoming: true,
-                message: attachment ? '' : message,
-                attachment,
-              });
-            }),
-          }))
-        )
-      )
+          return ({
+            incoming: true,
+            message: attachment ? '' : message,
+            attachment,
+            status: (i === message_groups.length - 1) && (j === messages.length - 1)
+              ? 'Delivered'
+              : undefined,
+          });
+        }),
+      }));
+      dispatch(setMessages(msgs));
     }
   }, [dispatch, message_groups, ally_mcbeal_screenplay, felicity_screenplay]);
 
@@ -49,11 +48,11 @@ export default function Chat() {
     <div className="chat flex flex-col h-screen justify-between p-0">
       <ContactHeader name={contact.name} avatar={contact.avatar} />
       <div className="chat-body grow min-h-0">
-        <div className="overflow-y-scroll h-full p-5">
+        <div id="chat" className="overflow-y-scroll h-full p-5">
           {messages.map(({ time, messages }, index) => (
             <div key={index} className="m-2">
               <time className="text-xs opacity-50">{time}</time>
-              {messages.map((msg) => <Message {...msg} />)}
+              {messages.map((msg, i) => <Message key={i} {...msg} />)}
             </div>
           ))}
         </div>

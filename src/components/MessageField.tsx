@@ -1,17 +1,23 @@
-import { PlusIcon, PaperAirplaneIcon } from "@heroicons/react/24/solid";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { PlusIcon, PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import type { ChangeEvent, FormEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { editMessage, addMessage } from '../store/messages';
+import type { RootState } from '../store';
 
 export default function MessageField() {
-  const [message, setMessage] = useState('');
+  const dispatch = useDispatch();
+  const message = useSelector((state: RootState) => state.message);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setMessage(event.target.value);
+    dispatch(editMessage(event.target.value));
   };
 
   const handleSubmit = (event?: FormEvent) => {
     event?.preventDefault();
-    console.log(message);
-    setMessage('');
+    dispatch(addMessage());
+    const chat = document.querySelector('#chat')!;
+    chat.scrollTop = chat.scrollHeight;
   }
 
   return (
@@ -24,7 +30,6 @@ export default function MessageField() {
             placeholder="Message"
             className="input bg-base-300 grow"
             onChange={handleChange}
-            onSubmit={handleSubmit}
             value={message}
           />
         </div>

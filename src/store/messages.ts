@@ -11,13 +11,13 @@ export interface MessageGroup {
 // Define the TS type for the counter slice's state
 export interface MessagesState {
   messages: MessageGroup[];
-  message: string | null;
+  message: string | undefined;
 }
 
 // Define the initial value for the slice state
 const initialState: MessagesState = {
   messages: [],
-  message: null,
+  message: '',
 }
 
 // Slices contain Redux reducer logic for updating state, and
@@ -35,14 +35,14 @@ export const messageSlice = createSlice({
     addMessage: state => {
       if (state.message) {
         state.messages.push({
-          time: 'Now',
+          time: '',
           messages: [{
             incoming: false,
             message: state.message,
-            status: 'Failed to send',
+            status: 'Failed',
           }],
         });
-        state.message = null;
+        state.message = '';
       }
     },
     // Edit outgoing message from message field

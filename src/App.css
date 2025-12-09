@@ -11,7 +11,7 @@
     --radius-field: 0.5rem
   }
 
-  .chat-bubble-primary::before {
+  .chat-bubble-secondary::before {
     inset-inline-start: -0.6rem;
   }
 
