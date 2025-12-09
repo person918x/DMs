@@ -3,11 +3,12 @@ import type { ChangeEvent, FormEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { editMessage, addMessage } from '../store/messages';
-import type { RootState } from '../store';
+import type { AppDispatch, RootState } from '../store';
 
 export default function MessageField() {
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const message = useSelector((state: RootState) => state.message);
+  const loading = useSelector((state: RootState) => state.loading);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(editMessage(event.target.value));
@@ -33,7 +34,11 @@ export default function MessageField() {
             value={message}
           />
         </div>
-        <button className="button hover: cursor-pointer" onClick={handleSubmit}>
+        <button
+          className="button hover: cursor-pointer"
+          onClick={handleSubmit}
+          disabled={loading || !message}
+        >
           <PaperAirplaneIcon className="size-5 flex-none ml-2 text-primary" title="Send" />
         </button>
       </div>
