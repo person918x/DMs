@@ -7,8 +7,8 @@ import ContactHeader from "./ContactHeader";
 import Message from "./ChatBubble";
 import MessageField from "./MessageField";
 import message_groups from "../assets/messages.json";
-import ally_mcbeal_screenplay from "../assets/ally-mcbeal.txt";
-import felicity_screenplay from "../assets/felicity.txt";
+import ally_mcbeal_screenplay from "../assets/ally-mcbeal.pdf";
+import felicity_screenplay from "../assets/felicity.pdf";
 
 export default function Chat() {
   const contact = { name: "Do Not Answer" };
