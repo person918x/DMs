@@ -33,7 +33,7 @@ export default function MessageField() {
     <>
       <form onSubmit={handleSubmit}>
         <div className="message-field navbar bg-base-100 shadow-sm flex-none">
-          <PlusIcon className="size-5 flex-none mr-2" title="Add attachment" />
+          <PlusIcon className="size-5 flex-none mr-2" />
           <div className="flex grow">
             <input
               type="text"
