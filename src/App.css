@@ -4,11 +4,11 @@
 .chat {
   --color-primary: #2877d0;
   --color-primary-content: #ffffff;
-  --color-secondary: #AEB9CC;
+  --color-secondary: #aeb9cc;
   --color-secondary-content: #000000;
 
   .chat-bubble {
-    --radius-field: 0.5rem
+    --radius-field: 0.5rem;
   }
 
   .chat-bubble-secondary::before {

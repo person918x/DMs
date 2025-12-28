@@ -3,7 +3,7 @@ import { DocumentTextIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   src: string;
-}
+};
 
 function Preview({ src }: Props) {
   const [content, setContent] = useState<string | undefined>(undefined);
@@ -14,11 +14,7 @@ function Preview({ src }: Props) {
       .then((txt) => setContent(txt));
   }, [src]);
 
-  return (
-    <pre>
-      {content}
-    </pre>
-  )
+  return <pre>{content}</pre>;
 }
 
 export default function Attachment({ src }: Props) {
@@ -28,12 +24,17 @@ export default function Attachment({ src }: Props) {
   return (
     <>
       <button className="button hover: cursor-pointer" onClick={preview}>
-        <DocumentTextIcon className="size-10 flex-none" title="View attachment" />
+        <DocumentTextIcon
+          className="size-10 flex-none"
+          title="View attachment"
+        />
       </button>
       <dialog id={src} className="modal">
         <div className="modal-box h-full w-full max-w-3xl bg-white">
           <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
           </form>
           <Preview src={src} />
         </div>
@@ -42,5 +43,5 @@ export default function Attachment({ src }: Props) {
         </form>
       </dialog>
     </>
-  )
+  );
 }

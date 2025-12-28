@@ -1,9 +1,13 @@
-import { PlusIcon, PaperAirplaneIcon, ExclamationCircleIcon } from '@heroicons/react/24/solid';
-import { useEffect, type ChangeEvent, type FormEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  PlusIcon,
+  PaperAirplaneIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/solid";
+import { useEffect, type ChangeEvent, type FormEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { editMessage, addMessage, clearError } from '../store/messages';
-import type { AppDispatch, RootState } from '../store';
+import { editMessage, addMessage, clearError } from "../store/messages";
+import type { AppDispatch, RootState } from "../store";
 
 export default function MessageField() {
   const dispatch: AppDispatch = useDispatch();
@@ -12,7 +16,7 @@ export default function MessageField() {
   const error = useSelector((state: RootState) => state.error);
 
   useEffect(() => {
-    const chat = document.querySelector('#chat')!;
+    const chat = document.querySelector("#chat")!;
     chat.scrollTop = chat.scrollHeight;
   }, [loading]);
 
@@ -23,11 +27,11 @@ export default function MessageField() {
   const handleSubmit = (event?: FormEvent) => {
     event?.preventDefault();
     dispatch(addMessage());
-  }
+  };
 
   const handleClear = () => {
     dispatch(clearError());
-  }
+  };
 
   return (
     <>
@@ -48,11 +52,14 @@ export default function MessageField() {
             onClick={handleSubmit}
             disabled={loading || !message}
           >
-            <span className='text-primary ml-2'>
+            <span className="text-primary ml-2">
               {loading ? (
                 <span className="loading loading-dots size-5"></span>
               ) : (
-                <PaperAirplaneIcon className="size-5 text-primary" title="Send" />
+                <PaperAirplaneIcon
+                  className="size-5 text-primary"
+                  title="Send"
+                />
               )}
             </span>
           </button>
@@ -60,16 +67,16 @@ export default function MessageField() {
       </form>
       <dialog className="modal" open={!!error}>
         <div className="modal-box card bg-base-100 max-w-fit text-center">
-          <div className='card-title flex'>
-            <ExclamationCircleIcon className='size-5' />
+          <div className="card-title flex">
+            <ExclamationCircleIcon className="size-5" />
             Message could not be delivered
           </div>
-          <div className='card-body'>
-            {error ? 'This user is no longer available.' : undefined}
+          <div className="card-body">
+            {error ? "This user is no longer available." : undefined}
           </div>
-          <div className='card-actions flex justify-end'>
+          <div className="card-actions flex justify-end">
             <form method="dialog" onSubmit={handleClear}>
-              <button className='btn border-gray-500'>Okay</button>
+              <button className="btn border-gray-500">Okay</button>
             </form>
           </div>
         </div>

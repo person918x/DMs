@@ -1,9 +1,9 @@
-import { asyncThunkCreator, buildCreateSlice } from '@reduxjs/toolkit';
-import type { MessageI } from '../components/ChatBubble';
+import { asyncThunkCreator, buildCreateSlice } from "@reduxjs/toolkit";
+import type { MessageI } from "../components/ChatBubble";
 
 export interface MessageGroup {
-  time: string,
-  messages: MessageI[],
+  time: string;
+  messages: MessageI[];
 }
 
 // Define the TS type for the counter slice's state
@@ -17,19 +17,19 @@ export interface MessageState {
 // Define the initial value for the slice state
 const initialState: MessageState = {
   messages: [],
-  message: '',
+  message: "",
   loading: false,
   error: false,
-}
+};
 
 export const createSlice = buildCreateSlice({
   creators: { asyncThunk: asyncThunkCreator },
-})
+});
 
 // Slices contain Redux reducer logic for updating state, and
 // generate actions that can be dispatched to trigger those updates.
 export const messageSlice = createSlice({
-  name: 'messages',
+  name: "messages",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: (create) => ({
@@ -46,29 +46,31 @@ export const messageSlice = createSlice({
     addMessage: create.asyncThunk(
       async (_, { getState }) => {
         const state = getState() as MessageState;
-        const message = state.message || '';
+        const message = state.message || "";
         await timeout(500);
         return {
-          time: '',
-          messages: [{
-            incoming: false,
-            message,
-            status: 'Failed',
-          }],
+          time: "",
+          messages: [
+            {
+              incoming: false,
+              message,
+              status: "Failed",
+            },
+          ],
         } as MessageGroup;
       },
       {
         pending: (state) => {
-          state.loading = true
+          state.loading = true;
         },
         rejected: (state, _action) => {
-          state.loading = false
+          state.loading = false;
         },
         fulfilled: (state, action) => {
-          state.loading = false
-          state.messages.push(action.payload as unknown as MessageGroup)
+          state.loading = false;
+          state.messages.push(action.payload as unknown as MessageGroup);
           state.error = true;
-          state.message = '';
+          state.message = "";
         },
       }
     ),
@@ -77,14 +79,15 @@ export const messageSlice = createSlice({
       state.error = false;
     }),
   }),
-})
+});
 
 function timeout(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // Export the generated action creators for use in components
-export const { setMessages, editMessage, addMessage, clearError } = messageSlice.actions
+export const { setMessages, editMessage, addMessage, clearError } =
+  messageSlice.actions;
 
 // Export the slice reducer for use in the store configuration
-export default messageSlice.reducer
+export default messageSlice.reducer;
